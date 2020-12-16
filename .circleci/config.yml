@@ -1,12 +1,12 @@
-version: 2
+version: 2 # this is the version 2 of circle CI
 jobs:
   build:
-    working_directory: /dockerapp
-    docker:
-      - image: docker:17.05.0-ce-git
-    steps:
+    working_directory: /dockerapp # default working directory
+    docker: # the primary container image
+      - image: docker:17.05.0-ce-git # (we just need docker and git, this provides it)
+    steps: # our container will run in the primary container (docker in docker)
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker # creates an environment
       - run:
           name: Install dependencies
           command: |
